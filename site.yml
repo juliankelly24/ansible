@@ -35,8 +35,7 @@
     - name: 'Enable NTP service'
       service: name=ntpd state=started enabled=yes
 
-    - include: tasks/apache.yml
-    - include: tasks/firewalld.yml
+    - include: create_users.yml
 
   handlers:
     - name: Restart idp
