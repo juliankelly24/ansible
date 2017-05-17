@@ -1,7 +1,6 @@
 #!/bin/bash
 set -e
 
-HOST_NAME=jk.exp.aaf.edu.au
 ENVIRONMENT=test
 INSTALL_BASE=/opt
 YUM_UPDATE=true
@@ -79,17 +78,6 @@ function pull_repo {
   popd > /dev/null
 }
 
-function set_ansible_hosts {
-  if [ ! -f $ANSIBLE_HOSTS_FILE ]; then
-    cat > $ANSIBLE_HOSTS_FILE << EOF
-[idp-servers]
-$HOST_NAME
-EOF
-  else
-    echo "$ANSIBLE_HOSTS_FILE already exists, not creating hostfile"
-  fi
-}
-
 function replace_property {
 # There will be a space between the property and its value.
   local property=$1
@@ -134,7 +122,6 @@ function bootstrap {
   ensure_mandatory_variables_set
   ensure_install_base_exists
   install_yum_dependencies
-  set_ansible_hosts
   set_ansible_cfg_log_path
 
 
