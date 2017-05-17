@@ -10,7 +10,7 @@ ANSIBLE_HOSTS_FILE=$LOCAL_REPO/ansible_hosts
 ANSIBLE_HOST_VARS=$LOCAL_REPO/host_vars/$HOST_NAME
 ANSIBLE_CFG=$LOCAL_REPO/ansible.cfg
 
-GIT_REPO=https://github.com/ausaccessfed/shibboleth-idp-installer.git
+GIT_REPO=https://github.com/juliankelly24/ansible
 GIT_BRANCH=master
 
 function ensure_mandatory_variables_set {
