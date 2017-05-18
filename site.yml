@@ -42,11 +42,11 @@
       with_items: '{{users}}'
 
     -  name: Setup | authorized key upload
-      authorized_key: user={{ item.username }}
-      key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
+       authorized_key: user={{ item.username }}
+        key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
 #      path='/home/{{ item.username }}/.ssh/authorized_keys'
 #      manage_dir=no
-      with_items: '{{users}}'
+       with_items: '{{users}}'
 
     - name: Sudoers | update sudoers file and validate
       lineinfile: "dest=/etc/sudoers
