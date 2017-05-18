@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+HOST_NAME=jk.exp.aaf.edu.au
 ENVIRONMENT=test
 INSTALL_BASE=/opt
 YUM_UPDATE=true
@@ -105,9 +106,7 @@ function set_ansible_cfg_log_path {
 }
 
 function run_ansible {
-  pushd $LOCAL_REPO > /dev/null
-  ansible-playbook -i ansible_hosts site.yml --force-handlers --extra-var="install_base=$INSTALL_BASE"
-  popd > /dev/null
+  ansible-playbook -i hosts site.yml
 }
 
 function display_completion_message {
