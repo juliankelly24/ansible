@@ -1,18 +1,11 @@
 #!/bin/bash
 set -e
 
-HOST_NAME=jk.exp.aaf.edu.au
-ENVIRONMENT=test
+HOST_NAME=localhost
 INSTALL_BASE=/opt
 YUM_UPDATE=true
 
 LOCAL_REPO=$INSTALL_BASE/repository
-ANSIBLE_HOSTS_FILE=$LOCAL_REPO/ansible_hosts
-ANSIBLE_HOST_VARS=$LOCAL_REPO/host_vars/$HOST_NAME
-ANSIBLE_CFG=$LOCAL_REPO/ansible.cfg
-
-GIT_REPO=https://github.com/juliankelly24/ansible
-GIT_BRANCH=master
 
 function ensure_mandatory_variables_set {
   for var in HOST_NAME ENVIRONMENT INSTALL_BASE YUM_UPDATE; do
@@ -79,34 +72,8 @@ function pull_repo {
   popd > /dev/null
 }
 
-function replace_property {
-# There will be a space between the property and its value.
-  local property=$1
-  local value=$2
-  local file=$3
-  if [ ! -z "$value" ]; then
-    sed -i "s/.*$property.*/$property $value/g" $file
-  fi
-}
-
-function replace_property_nosp {
-# There will be NO space between the property and its value.
-  local property=$1
-  local value=$2
-  local file=$3
-  if [ ! -z "$value" ]; then
-    sed -i "s/.*$property.*/$property$value/g" $file
-  fi
-}
-
-
-function set_ansible_cfg_log_path {
-  replace_property_nosp 'log_path=' "${ACTIVITY_LOG////\\/}" \
-    $ANSIBLE_CFG
-}
-
 function run_ansible {
-  ansible-playbook -i hosts site.yml
+  ansible-playbook -i /etc/ansible/hosts create_users.yml
 }
 
 function display_completion_message {
@@ -121,10 +88,6 @@ function bootstrap {
   ensure_mandatory_variables_set
   ensure_install_base_exists
   install_yum_dependencies
-  set_ansible_cfg_log_path
-
-
-
   run_ansible
   display_completion_message
 }
