@@ -8,7 +8,7 @@ YUM_UPDATE=true
 LOCAL_REPO=$INSTALL_BASE/repository
 
 function ensure_mandatory_variables_set {
-  for var in HOST_NAME ENVIRONMENT INSTALL_BASE YUM_UPDATE; do
+  for var in HOST_NAME INSTALL_BASE YUM_UPDATE; do
     if [ ! -n "${!var:-}" ]; then
       echo "Variable '$var' is not set! Set this in `basename $0`"
       exit 1
