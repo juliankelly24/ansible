@@ -73,7 +73,7 @@ function pull_repo {
 }
 
 function run_ansible {
-  ansible-playbook -i /etc/ansible/hosts create_users.yml
+  ansible-playbook -i 'localhost ansible_connection=local,' create_users.yml
 }
 
 function display_completion_message {
