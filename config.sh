@@ -1,7 +1,7 @@
-#!/bin/bash
 set -e
 
 yum -y install git
+yum -y install epel-release
 yum -y install ansible
 git clone https://github.com/juliankelly24/ansible ~/ansible
 
