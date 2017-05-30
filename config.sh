@@ -7,7 +7,7 @@ REPO_NAME=https://github.com/juliankelly24/ansible
 yum -y install epel-release
 yum -y install ansible git
 {
-if [ ! -d $REPO ];
+if [ ! -f $REPO ];
 then
     continue
 else
