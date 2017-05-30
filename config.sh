@@ -17,7 +17,7 @@ cd /opt/aaf/repo
 git reset --hard
 git pull 
 ansible-playbook -i 'localhost ansible_connection=local,' $REPO/create_users.yml
-cp -f /opt/aaf/repo/config.sh /opt/aaf/x/cron.#!/bin/sh
-echo "yum -y update" > /opt/aaf/x/cron.sh
+mkdir /opt/aaf/x
+cp -f /opt/aaf/repo/config.sh /opt/aaf/x/cron.sh
 chmod +x $REPO/cron.sh
 echo "30 1 * * * /bin/sh /opt/aaf/x/cron.sh > /root/cronlog" > /var/spool/cron/root
