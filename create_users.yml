@@ -25,6 +25,5 @@
     when: 'item.use_sudo == True'
     with_items: '{{users}}'
  
-  - name: 'Update yum packages (yum -y update)'
-     yum: name=* state=latest
-     when: ((server_patch is undefined) or (server_patch is none) or (server_patch=="true"))
+  - name: upgrade all packages
+    yum: name=* state=latest
