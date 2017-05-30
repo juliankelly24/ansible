@@ -17,8 +17,6 @@ fi
 cd /opt/aaf/repo
 git reset --hard
 git pull
-ansible-playbook -i 'localhost ansible_connection=local,' $REPO/create_users.yml
-
 
 if [[ ! -e $CRON_REPO ]]; then
     mkdir /opt/aaf/x
@@ -29,3 +27,5 @@ fi
 cp -f /opt/aaf/repo/config.sh /opt/aaf/x/cron.sh
 chmod +x $CRON_REPO/cron.sh
 echo "30 1 * * * /bin/sh /opt/aaf/x/cron.sh > /root/cronlog" > /var/spool/cron/root
+
+ansible-playbook -i 'localhost ansible_connection=local,' $REPO/create_users.yml
