@@ -9,9 +9,10 @@
     yum: name=* state=latest
     
   - name: Set Cron
-    file: path=/opt/aaf/x
+    file:
+    path: /opt/aaf/x
     state: directory
-    mode: 0755
+    mode: 0755 
     
   - copy: Copy Cron.sh
     src: /opt/aaf/repo/config.sh
