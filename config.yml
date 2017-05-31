@@ -1,6 +1,13 @@
 ---
 - hosts: localhost
   user: root
+  
+  vars:
+    julian: /opt/aaf/repo/pub_keys/julian.pub
+    dalia: /opt/aaf/repo/pub_keys/dalia.pub
+    terry: /opt/aaf/repo/pub_keys/terry.pub
+    melroy: /opt/aaf/repo/pub_keys/melroy.pub
+    ec2: /home/ec2-user/.ssh/authorized_keys
 
   tasks:
   
@@ -9,3 +16,10 @@
     
   - name: Copy Cron File
     copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
+
+  - name: Setup | Cron Job
+    lineinfile: "dest=/var/spool/cron/root
+    insertafter=EOF
+    line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au" > /var/spool/cron/root'
+    state=present"
+    when: 'julian == ec2'
