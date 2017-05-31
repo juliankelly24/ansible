@@ -21,18 +21,6 @@ cd /opt/aaf/repo
 git reset --hard
 git pull
 
-# Creates Cron Directory if it doesn't exist
-if [[ ! -e $CRON_REPO ]]; then
-    mkdir /opt/aaf/x
-elif [[ ! -d $dir ]]; then
-     1>&2
-fi
-
-# Moved to Playbook
-# Copies Cron File and overwrites any old files + Changes permissions to run shell
-#cp -f /opt/aaf/repo/config.sh /opt/aaf/x/cron.sh
-# chmod +x $CRON_REPO/cron.sh
-
 #Compares files to EC2-USER Public Key for Cron Issue Email Schedule
 if cmp -s "$JULIAN" "$SSH"
 then
