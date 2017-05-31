@@ -3,14 +3,6 @@
   user: root
 
   tasks:
-
-  - file: ensure directory exists
-    path: /opt/aaf/x
-    state: directory
-    mode: 0755 
-
-  - copy: Copy Cron.sh
-    src: /opt/aaf/repo/config.sh
-    dest: /opt/aaf/x/cron.sh
-    state: hard
-    mode: 0755
+  
+  - name: Make sure that the ansible_backup directory exsists
+    action: file path=/etc/citrusleaf/AnsibleBackup state=directory
