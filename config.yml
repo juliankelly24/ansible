@@ -3,11 +3,11 @@
   user: root
   
   vars_files:
-   - julian: /opt/aaf/repo/pub_keys/julian.pub
-   - dalia: /opt/aaf/repo/pub_keys/dalia.pub
-   - terry: /opt/aaf/repo/pub_keys/terry.pub
-   - melroy: /opt/aaf/repo/pub_keys/melroy.pub
-   - ec2: /home/ec2-user/.ssh/authorized_keys
+   - /opt/aaf/repo/pub_keys/julian.pub
+   - /opt/aaf/repo/pub_keys/dalia.pub
+   - /opt/aaf/repo/pub_keys/terry.pub
+   - /opt/aaf/repo/pub_keys/melroy.pub
+   - /home/ec2-user/.ssh/authorized_keys
 
   tasks:
   
@@ -22,4 +22,4 @@
     insertafter=EOF
     line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au test12345'
     state=present"
-    when: 'julian == ec2'
+    when: 'julian.pub == authorized_keys'
