@@ -8,7 +8,7 @@
   - name: upgrade all packages
     yum: name=* state=latest
     
-  - file: Set Cron
+  - file:
     path: /opt/aaf/x
     state: directory
     mode: 0755 
