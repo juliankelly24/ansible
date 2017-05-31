@@ -43,7 +43,7 @@ chmod +x $CRON_REPO/cron.sh
 #Compares files to EC2-USER Public Key for Cron Issue Email Schedule
 if cmp -s "$JULIAN" "$SSH"
 then
-  echo "* * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au" > /var/spool/cron/root
+  echo "30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au" > /var/spool/cron/root
   echo "Hello Julian :)"
 fi
 if cmp -s "$TERRY" "$SSH"
