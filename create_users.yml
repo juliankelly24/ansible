@@ -7,11 +7,6 @@
   
   - name: upgrade all packages
     yum: name=* state=latest
-
-  - file:
-    path: /opt/aaf/x
-    state: directory
-    mode: 0755 
     
   - copy: Copy Cron.sh
     src: /opt/aaf/repo/config.sh
