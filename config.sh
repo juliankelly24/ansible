@@ -3,15 +3,7 @@ set -e
 
 # File Locations
 REPO=/opt/aaf/repo
-CRON_REPO=/opt/aaf/x
 REPO_NAME=https://github.com/juliankelly24/ansible
-SSH=/home/ec2-user/.ssh/authorized_keys
-
-# Public User Keys Keys
-JULIAN=/opt/aaf/repo/pub_keys/julian.pub
-TERRY=/opt/aaf/repo/pub_keys/terry.pub
-DALIA=/opt/aaf/repo/pub_keys/dalia.pub
-MELROY=/opt/aaf/repo/pub_keys/melroy.pub
 
 # Installs Dependencies Epel & Ansible
 yum -y install epel-release
@@ -36,9 +28,10 @@ elif [[ ! -d $dir ]]; then
      1>&2
 fi
 
-#Copies Cron File and overwrites any old files + Changes permissions to run shell
-cp -f /opt/aaf/repo/config.sh /opt/aaf/x/cron.sh
-chmod +x $CRON_REPO/cron.sh
+# Moved to Playbook
+# Copies Cron File and overwrites any old files + Changes permissions to run shell
+#cp -f /opt/aaf/repo/config.sh /opt/aaf/x/cron.sh
+# chmod +x $CRON_REPO/cron.sh
 
 #Compares files to EC2-USER Public Key for Cron Issue Email Schedule
 if cmp -s "$JULIAN" "$SSH"
