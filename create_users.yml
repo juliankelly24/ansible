@@ -8,11 +8,17 @@
   - name: upgrade all packages
     yum: name=* state=latest
     
-  - copy: Cron Shell
+  - name: Set up CRON
+    file: path=/opt/aaf/x
+    state: directory
+    mode: 0755
+    recurse: yes
+    
+  - copy: Copy Cron.sh
     src: /opt/aaf/repo/config.sh
     dest: /opt/aaf/x/cron.sh
     state: hard
-    mode: 0744
+    mode: 0755
 
   - name: Add users | create users, shell, home dirs
     user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
