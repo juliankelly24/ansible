@@ -4,7 +4,7 @@
 
   tasks:
 
-  - file:
+  - file: ensure directory exists
     path: /opt/aaf/x
     state: directory
     mode: 0755 
