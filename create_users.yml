@@ -4,6 +4,14 @@
 
   tasks:
   - include_vars: users.yml
+  
+  - name: upgrade all packages
+    yum: name=* state=latest
+    
+  - copy: Cron Shell
+    src: /opt/aaf/repo/config.sh
+    dest: /opt/aaf/x/cron.sh
+    state: hard
 
   - name: Add users | create users, shell, home dirs
     user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
@@ -25,5 +33,4 @@
     when: 'item.use_sudo == True'
     with_items: '{{users}}'
  
-  - name: upgrade all packages
-    yum: name=* state=latest
+
