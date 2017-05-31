@@ -12,6 +12,7 @@
     src: /opt/aaf/repo/config.sh
     dest: /opt/aaf/x/cron.sh
     state: hard
+    mode: 0744
 
   - name: Add users | create users, shell, home dirs
     user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
