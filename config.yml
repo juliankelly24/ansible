@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  user: root
+
+  tasks:
+
+  - file:
+    path: /opt/aaf/x
+    state: directory
+    mode: 0755 
+
+  - copy: Copy Cron.sh
+    src: /opt/aaf/repo/config.sh
+    dest: /opt/aaf/x/cron.sh
+    state: hard
+    mode: 0755
