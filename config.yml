@@ -3,7 +3,6 @@
   user: root
   
   vars:
-   files:
     julian: /opt/aaf/repo/pub_keys/julian.pub
     dalia: /opt/aaf/repo/pub_keys/dalia.pub
     terry: /opt/aaf/repo/pub_keys/terry.pub
@@ -22,4 +21,5 @@
     lineinfile: "dest=/var/spool/cron/root
     insertafter=EOF
     line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au test12345'
+    state=present"
     when: 'julian == ec2'
