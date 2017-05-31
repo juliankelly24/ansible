@@ -4,5 +4,5 @@
 
   tasks:
   
-  - name: Make sure that the ansible_backup directory exsists
-    action: file path=/etc/citrusleaf/AnsibleBackup state=directory
+  - name: Check Cron Directory Exsists
+    action: file path=/opt/aaf/x state=directory mode=0755
