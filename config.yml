@@ -18,8 +18,8 @@
     copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
     
   - name: Setup | Cron Job
-    lineinfile: "dest=/var/spool/cron/root
+    action: copy='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au'
+    lineinfile="dest=/var/spool/cron/root
     insertafter=EOF
-    line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au'
     state=present"
-    when: "'julian' == 'ec2'"
+    only_if: "'julian' == 'ec2'"
