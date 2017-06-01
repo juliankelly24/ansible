@@ -5,6 +5,8 @@
   vars:
     julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
     dalia: "{{ lookup('file', '/opt/aaf/repo/pub_keys/dalia.pub') }}"
+    terry: "{{ lookup('file', '/opt/aaf/repo/pub_keys/terry.pub') }}"
+    melroy: "{{ lookup('file', '/opt/aaf/repo/pub_keys/melroy.pub') }}"
     ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
 
   tasks:
@@ -15,9 +17,30 @@
   - name: Copy Cron File
     copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
     
-  - name: Setup | Cron Job
+  - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
     insertafter=EOF
-    line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au12345'
+    line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au'
     state=present"
-    when: 'julian == dalia'
+    when: 'julian == ec2'
+    
+  - name: Check Dalia | Cron Job
+    lineinfile: "dest=/var/spool/cron/root
+    insertafter=EOF
+    line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' dalia.abraham@aaf.edu.au'
+    state=present"
+    when: 'dalia == ec2'
+    
+  - name: Check Terry | Cron Job
+    lineinfile: "dest=/var/spool/cron/root
+    insertafter=EOF
+    line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' t.smith@aaf.edu.au'
+    state=present"
+    when: 'terry == ec2'
+    
+  - name: Check Melroy | Cron Job
+    lineinfile: "dest=/var/spool/cron/root
+    insertafter=EOF
+    line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' melroy.almeida@aaf.edu.au'
+    state=present"
+    when: 'melroy == ec2'
