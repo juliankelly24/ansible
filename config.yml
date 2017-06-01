@@ -3,7 +3,7 @@
   user: root
   
   vars:
-   julian = /opt/aaf/repo/pub_keys/julian.pub
+    - /opt/aaf/repo/pub_keys/julian.pub
 #   - /opt/aaf/repo/pub_keys/dalia.pub
  #  - /opt/aaf/repo/pub_keys/terry.pub
 #   - /opt/aaf/repo/pub_keys/melroy.pub
@@ -22,4 +22,4 @@
     insertafter=EOF
     line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au test12345'
     state=present"
-    when: 'julian.pub == authorized_keys'
+    only_if: "'julian.pub' == 'authorized_keys'"
