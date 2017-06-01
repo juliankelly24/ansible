@@ -4,6 +4,7 @@
   
   vars:
     julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
+    ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
 
   tasks:
   
