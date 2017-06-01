@@ -4,11 +4,12 @@
   
   vars:
   file:
-    /opt/aaf/repo/pub_keys/julian.pub
+    #/opt/aaf/repo/pub_keys/julian.pub
+    julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
 #   - /opt/aaf/repo/pub_keys/dalia.pub
  #  - /opt/aaf/repo/pub_keys/terry.pub
 #   - /opt/aaf/repo/pub_keys/melroy.pub
-    /home/ec2-user/.ssh/authorized_keys
+    ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
 
   tasks:
   
