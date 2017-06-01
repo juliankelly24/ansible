@@ -4,6 +4,7 @@
   
   vars:
     julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
+    dalia: "{{ lookup('file', '/opt/aaf/repo/pub_keys/dalia.pub') }}"
     ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
 
   tasks:
@@ -19,4 +20,4 @@
     insertafter=EOF
     line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au12345'
     state=present"
-    when: 'julian == ec2'
+    when: 'julian == dalia'
