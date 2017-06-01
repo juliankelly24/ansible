@@ -1,4 +1,7 @@
 ---
+- hosts: localhost
+  user: root
+  
   vars:
   file:
     #/opt/aaf/repo/pub_keys/julian.pub
@@ -20,4 +23,3 @@
     insertafter=EOF
     line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au12345'
     state=present"
-    when: "contents: '{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}' == contents: '{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}'"
