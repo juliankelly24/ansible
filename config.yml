@@ -22,8 +22,8 @@
   - name: Setup | authorized key upload
     authorized_key: user={{ item.username }}
       key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
-#      path='/home/{{ item.username }}/.ssh/authorized_keys'
-#      manage_dir=no
+#     path='/home/{{ item.username }}/.ssh/authorized_keys'
+#     manage_dir=no
     with_items: '{{users}}'
 
   - name: Sudoers | update sudoers file and validate
@@ -43,28 +43,28 @@
     
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-    regexp='^'
-    line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au'
-    state=present"
+      regexp='^'
+      line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au'
+      state=present"
     when: 'julian == ec2'
     
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-    regexp='^'
-    line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' dalia.abraham@aaf.edu.au'
-    state=present"
+      regexp='^'
+      line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' dalia.abraham@aaf.edu.au'
+      state=present"
     when: 'dalia == ec2'
     
   - name: Check Terry | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-    regexp='^'
-    line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' t.smith@aaf.edu.au'
-    state=present"
+      regexp='^'
+      line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' t.smith@aaf.edu.au'
+      state=present"
     when: 'terry == ec2'
     
   - name: Check Melroy | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-    regexp='^'
-    line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' melroy.almeida@aaf.edu.au'
-    state=present"
+      regexp='^'
+      line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' melroy.almeida@aaf.edu.au'
+      state=present"
     when: 'melroy == ec2'
