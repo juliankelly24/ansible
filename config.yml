@@ -18,3 +18,4 @@
     insertafter=EOF
     line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au12345'
     state=present"
+    when: {{ julian }} == {{ julian }}"
