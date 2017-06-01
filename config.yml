@@ -41,6 +41,11 @@
   - name: Copy Cron File
     copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
     
+  - name: Delete keys in sysadmin/.ssh/authoriezd_keys
+    lineinfile: dest=/home/{{name}}/.ssh/authorized_keys
+    state=absent
+    regexp='^{{ /bin/sh /opt/aaf/x/cron.sh | replace("+", "\+") }}$'
+    
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
     insertafter=EOF
