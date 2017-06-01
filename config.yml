@@ -3,7 +3,7 @@
   user: root
   
   vars:
-    julian: "{{ lookup('file', '/etc/foo.txt') }}"
+    julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
 
   tasks:
   
