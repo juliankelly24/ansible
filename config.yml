@@ -7,7 +7,7 @@
 #   - /opt/aaf/repo/pub_keys/dalia.pub
  #  - /opt/aaf/repo/pub_keys/terry.pub
 #   - /opt/aaf/repo/pub_keys/melroy.pub
-    authorized_keys: /home/ec2-user/.ssh/authorized_keys
+    ec2: /home/ec2-user/.ssh/authorized_keys
 
   tasks:
   
@@ -22,4 +22,4 @@
     insertafter=EOF
     line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au'
     state=present"
-    when: 'julian == ec2'
+    only_if: "'julian' == 'ec2'"
