@@ -43,7 +43,7 @@
     
   - name: Remove lines with unwanted occurrences of cron.sh
     lineinfile: dest=/var/spool/cron/root
-              regexp="^cron.sh"
+              regexp='^{{ key | replace("cron.sh", "\+") }}$'
               state=absent
     
   - name: Check Julian | Cron Job
