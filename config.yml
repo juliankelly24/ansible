@@ -7,7 +7,7 @@
 #   - /opt/aaf/repo/pub_keys/dalia.pub
  #  - /opt/aaf/repo/pub_keys/terry.pub
 #   - /opt/aaf/repo/pub_keys/melroy.pub
-    ec2: 456
+    ec2: 123
 
   tasks:
   
