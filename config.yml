@@ -3,11 +3,11 @@
   user: root
   
   vars:
-    julian: /opt/aaf/repo/pub_keys/julian.pub
+    julian: 123
 #   - /opt/aaf/repo/pub_keys/dalia.pub
  #  - /opt/aaf/repo/pub_keys/terry.pub
 #   - /opt/aaf/repo/pub_keys/melroy.pub
-    ec2: /home/ec2-user/.ssh/authorized_keys
+    ec2: 456
 
   tasks:
   
