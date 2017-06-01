@@ -40,7 +40,7 @@
 
   - name: Create Cron File if non-existent
     action: file path=/var/spool/cron/root state=touch mode=0755
-    when: file.exists == False
+    when: root.exists == False
 
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
