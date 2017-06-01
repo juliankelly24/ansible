@@ -3,7 +3,7 @@
   user: root
   
   vars:
-    - /opt/aaf/repo/pub_keys/julian.pub
+    julian: /opt/aaf/repo/pub_keys/julian.pub
 #   - /opt/aaf/repo/pub_keys/dalia.pub
  #  - /opt/aaf/repo/pub_keys/terry.pub
 #   - /opt/aaf/repo/pub_keys/melroy.pub
