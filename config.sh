@@ -22,4 +22,4 @@ git reset --hard
 git pull
 
 # Run Ansible Playbook with Yum Update
-ansible-playbook -i 'localhost ansible_connection=local,' $REPO/create_users.yml
+ansible-playbook -i 'localhost ansible_connection=local,' $REPO/config.yml
