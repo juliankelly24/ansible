@@ -3,7 +3,7 @@
   user: root
   
   vars:
-    contents: "{{ lookup('file', '/etc/foo.txt') }}"
+    julian: "{{ lookup('file', '/etc/foo.txt') }}"
 
   tasks:
   
