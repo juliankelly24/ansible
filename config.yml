@@ -35,9 +35,14 @@
   - name: Check Cron Directory exists
     action: file path=/opt/aaf/x state=directory mode=0755
     
-  - name: Copy Cron File
+  - name: Copy Cron Shell
     copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
-    
+
+  - name: Create file
+    command: touch /var/spool/cron/root
+    regexp='^'
+    state=present
+
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
       regexp='^'
