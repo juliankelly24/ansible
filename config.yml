@@ -1,7 +1,4 @@
 ---
-- hosts: localhost
-  user: root
-  
   vars:
   file:
     #/opt/aaf/repo/pub_keys/julian.pub
