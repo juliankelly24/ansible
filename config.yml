@@ -1,6 +1,9 @@
 ---
 - hosts: localhost
   user: root
+  
+  vars:
+    contents: "{{ lookup('file', '/etc/foo.txt') }}"
 
   tasks:
   
