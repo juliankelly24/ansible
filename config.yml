@@ -5,11 +5,11 @@
   vars:
   file:
     #/opt/aaf/repo/pub_keys/julian.pub
-    julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
+    contents: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
 #   - /opt/aaf/repo/pub_keys/dalia.pub
  #  - /opt/aaf/repo/pub_keys/terry.pub
 #   - /opt/aaf/repo/pub_keys/melroy.pub
-    ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
+    contents: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
 
   tasks:
   
@@ -24,4 +24,4 @@
     insertafter=EOF
     line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au12345'
     state=present"
-    when: 'julian == ec2'
+    when: 'julian == authorized_keys'
