@@ -40,11 +40,8 @@
     
   - name: Copy Cron File
     copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
-    
-  - name: Remove lines with unwanted occurrences of cron.sh
-    lineinfile: dest=/var/spool/cron/root
-              regexp='^{{ key | replace("cron.sh", "\+") }}$'
-              state=absent
+
+  - lineinfile: dest=/var/spool/cron/root state=absent regexp="^cron.sh"
     
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
