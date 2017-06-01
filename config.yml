@@ -2,12 +2,12 @@
 - hosts: localhost
   user: root
   
-  vars_files:
-   - /opt/aaf/repo/pub_keys/julian.pub
-   - /opt/aaf/repo/pub_keys/dalia.pub
-   - /opt/aaf/repo/pub_keys/terry.pub
-   - /opt/aaf/repo/pub_keys/melroy.pub
-   - /home/ec2-user/.ssh/authorized_keys
+  vars:
+   julian = /opt/aaf/repo/pub_keys/julian.pub
+#   - /opt/aaf/repo/pub_keys/dalia.pub
+ #  - /opt/aaf/repo/pub_keys/terry.pub
+#   - /opt/aaf/repo/pub_keys/melroy.pub
+#   - /home/ec2-user/.ssh/authorized_keys
 
   tasks:
   
