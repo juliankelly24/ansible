@@ -35,7 +35,7 @@
     when: 'item.use_sudo == True'
     with_items: '{{users}}'
     
-  - name: Check Cron Directory Exsists
+  - name: Check Cron Directory exists
     action: file path=/opt/aaf/x state=directory mode=0755
     
   - name: Copy Cron File
