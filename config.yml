@@ -17,9 +17,11 @@
   - name: Copy Cron File
     copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
     
-  - name: Copy Cron File2
-    lineinfile: "dest=/var/spool/cron/root
-    insertafter=EOF
-    line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au test12345'
-    state=present"
-    only_if: "'julian.pub' == 'authorized_keys'"
+  - name: Sudoers | update sudoers file and validate
+    lineinfile: "dest=/etc/sudoers
+      insertafter=EOF
+      line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
+      regexp='^{{ item.username }} .*'
+      state=present"
+    when: 'item.use_sudo == True'
+    with_items: '{{users}}'
