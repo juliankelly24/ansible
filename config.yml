@@ -20,6 +20,6 @@
   - name: Setup | Cron Job
     lineinfile: "dest=/var/spool/cron/root
     insertafter=EOF
-    line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au" > /var/spool/cron/root'
+    line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au'
     state=present"
     when: 'julian == ec2'
