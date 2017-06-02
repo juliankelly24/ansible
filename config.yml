@@ -40,7 +40,14 @@
 
   - name: Create Cron File if non-existent
     action: file path=/var/spool/cron/root state=touch mode=0644
-    
+
+  - name: Check Julian | Cron Job
+    lineinfile: "dest=/var/spool/cron/root
+    regexp='^'
+    line='30 * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' julian.kelly@aaf.edu.au'
+    state=present"
+    when: 'julian == ec2'
+
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
       regexp='^'
