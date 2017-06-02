@@ -44,7 +44,7 @@
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
       regexp='^'
-      line='* * * * * /bin/sh /opt/aaf/x/cron.sh >/dev/null 2>&1 | mail -s 'Cron Error' julian.kelly@aaf.edu.au'
+      line='* * * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'Cron Error' julian.kelly@aaf.edu.au'
       state=present"
     when: 'julian == ec2'
     
