@@ -43,11 +43,11 @@
 
   - name: Check Julian | Cron Job
     lineinfile: dest=/var/spool/cron/root
-    state: present
-    line: '{{item}}'
+                line='{{item}}'
     with_items:
     - 'MAILTO:julian.kelly@aaf.edu.au'
     - '* * * * * /bin/sh /opt/aaf/x/cron.sh'
+    state: present
     when: 'julian == ec2'
 
   - name: Check Dalia | Cron Job
