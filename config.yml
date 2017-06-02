@@ -41,7 +41,7 @@
   - name: Create Cron File if non-existent
     action: file path=/var/spool/cron/root state=touch mode=0644
 
-  - name: Check Julian | Cron Job
+  - name Check Julian | Cron Job
     lineinfile: dest=/var/spool/cron/root
                 line='{{item}}'
     with_items:
