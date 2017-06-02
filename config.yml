@@ -42,13 +42,13 @@
     action: file path=/var/spool/cron/root state=touch mode=0644
 
   - name: Check Julian | Cron Job
-    lineinfile: "dest=/var/spool/cron/root
+    lineinfile: dest=/var/spool/cron/root
     regexp='^'
+    state=present
     line='{{item}}'
     with_items:
-    - 'MAILTO:julian.kelly@aaf.edu.au '
-    - '* * * * * /bin/sh /opt/aaf/x/cron.sh'   
-    state=present"
+    - 'MAILTO:julian.kelly@aaf.edu.au'
+    - '* * * * * /bin/sh /opt/aaf/x/cron.sh'
     when: 'julian == ec2'
 
   - name: Check Dalia | Cron Job
