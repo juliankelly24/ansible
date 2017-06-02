@@ -43,7 +43,6 @@
 
   - name: Check Julian | Cron Job
     lineinfile: dest=/var/spool/cron/root
-    regexp='^'
     state=present
     line='{{item}}'
     with_items:
