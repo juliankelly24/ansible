@@ -46,14 +46,13 @@
  #               line='{{item}}'         
  #   with_items: 'Orange' 'apple'
  #   
- - name: Julian | Cron
-   lineinfile: "dest=/var/spool/cron/root
-      line='{{ item }}'
+  - name: Julian | Cron
+    lineinfile: "dest=/var/spool/cron/root		     
+      line='{{item}}'         		
+      with_items: 'Orange' 'apple'		 +
       state=present"
-    when: 'julian == ec2'
-    with_items: 
-    - 'MAILTO:julian.kelly@aaf.edu.au' 
-    - '5 * * * * /bin/sh /opt/aaf/x/cron.sh'
+    when: 'item.use_sudo == True'
+    with_items: 'orange'
 
 #  - name: Check Julian | Cron Job
 #    lineinfile: "dest=/var/spool/cron/root
@@ -64,8 +63,6 @@
 #     with_items: 
 #     - 'MAILTO:julian.kelly@aaf.edu.au'
  #    - '30 1 * * * /bin/sh /opt/aaf/x/cron.sh'
-
-   
 
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
