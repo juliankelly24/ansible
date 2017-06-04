@@ -47,7 +47,7 @@
       line='5 * * * * /bin/sh /opt/aaf/x/cron.sh'
       state=present"
     when: 'julian == ec2'
-    with_items:
+    with_dict:
     - { property: 'MAILTO:julian.kelly@aaf.edu.au' }
     - { property: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
 
