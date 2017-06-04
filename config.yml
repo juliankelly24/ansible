@@ -51,7 +51,9 @@
       insertafter=EOF
       line='{{ item }}'
       state=present"
-    with_items: 'orange' 'apple'
+    with_items: 
+    - 'orange' 
+    - 'apple'
 
 #    with_items:
 #    - 'MAILTO:julian.kelly@aaf.edu.au'
