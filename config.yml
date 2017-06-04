@@ -48,7 +48,6 @@
     
   - name: Julian | Cron
     lineinfile: "dest=/var/spool/cron/root
-      insertafter=EOF
       line='{{ item }}'
       regexp='^'
       state=present"
