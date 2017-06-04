@@ -41,26 +41,19 @@
   - name: Create Cron File if non-existent
     action: file path=/var/spool/cron/root state=touch mode=0644
     
-#  - name Check Julian | Cron Job
-#    lineinfile: "dest=/var/spool/cron/root
- #               line='{{item}}'         
- #   with_items: 'Orange' 'apple'
+  - name Check Julian | Cron Job
+    lineinfile: "dest=/var/spool/cron/root
+                line='{ {item }}'"    
+    with_items: 'Orange' 'apple'
  #   
-  - name: Julian | Cron
-    lineinfile: "dest=/var/spool/cron/root		     
-      line='{{item}}'         		
-      with_items: 'Orange' 'apple'		 +
-      state=present"
-    when: 'item.use_sudo == True'
-    with_items: 'orange'
-
-#  - name: Check Julian | Cron Job
-#    lineinfile: "dest=/var/spool/cron/root
-#      line='{{ item }}' 
-#      regexp='^'
+#  - name: Julian | Cron
+#    lineinfile: "dest=/var/spool/cron/root		     
+#      line='{{item}}'         		
+#      with_items: 'Orange' 'apple'		 +
 #      state=present"
-#     when: 'julian == ec2'
-#     with_items: 
+#    when: 'item.use_sudo == True'
+#    with_items: 'orange'
+#
 #     - 'MAILTO:julian.kelly@aaf.edu.au'
  #    - '30 1 * * * /bin/sh /opt/aaf/x/cron.sh'
 
