@@ -50,6 +50,7 @@
     lineinfile: "dest=/var/spool/cron/root
       insertafter=EOF
       line='{{ item }}'
+      regexp='^'
       state=present"
     when: 'julian == ec2'
     with_items: 
