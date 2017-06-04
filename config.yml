@@ -48,7 +48,7 @@
     
   - name: Julian | Cron
     lineinfile: "dest=/var/spool/cron/root
-      line='{{ item }}'
+      line='{{ item }}'"
     when: 'julian == ec2'
     with_items: 
     - 'MAILTO:julian.kelly@aaf.edu.au' 
