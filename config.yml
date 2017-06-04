@@ -52,7 +52,7 @@
     when: 'julian == ec2'
     with_items: 
     - 'MAILTO:julian.kelly@aaf.edu.au' 
-    - '* * * * * /bin/sh /opt/aaf/x/cron.sh'
+    - '5 * * * * /bin/sh /opt/aaf/x/cron.sh'
 
 #    with_items:
 #    - ''
