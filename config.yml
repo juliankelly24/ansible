@@ -56,7 +56,7 @@
       path: /var/spool/cron/root
       block: |
       {{ item.name }}
-    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+    marker: {{ item.name }}
   when: 'julian == ec2'
   with_items:
     - { MAILTO:julian.kelly@aaf.edu.au }
