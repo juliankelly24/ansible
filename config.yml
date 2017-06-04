@@ -38,11 +38,11 @@
   - name: Copy Cron Shell
     copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
 
-    with_items:
-    - 'MAILTO:julian.kelly@aaf.edu.au'
-    - '* * * * * /bin/sh /opt/aaf/x/cron.sh'
-    state: present
-    when: 'julian == ec2'
+#    with_items:
+#    - 'MAILTO:julian.kelly@aaf.edu.au'
+#    - '* * * * * /bin/sh /opt/aaf/x/cron.sh'
+#    state: present
+#    when: 'julian == ec2'
 
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
