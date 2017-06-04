@@ -48,6 +48,8 @@
     
   - name: Julian | Cron
     lineinfile: "dest=/var/spool/cron/root
+      line='{{ item }}'
+      line='{{ item }}'
       regexp='^'
       state=present"
     when: 'julian == ec2'
