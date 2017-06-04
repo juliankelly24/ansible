@@ -46,14 +46,15 @@
  #               line='{{item}}'         
  #   with_items: 'Orange' 'apple'
  #   
-#  - name: Julian | Cron
- #   lineinfile: "dest=/var/spool/cron/root
-#      line='{{ item }}'
-#      state=present"
-#    when: 'julian == ec2'
-#    with_items: 
-#    - 'MAILTO:julian.kelly@aaf.edu.au' 
-#    - '5 * * * * /bin/sh /opt/aaf/x/cron.sh'
+ - name: Julian | Cron
+   lineinfile: "dest=/var/spool/cron/root
+      line='{{ item }}'
+      regexp='^'
+      state=present"
+    when: 'julian == ec2'
+    with_items: 
+    - 'MAILTO:julian.kelly@aaf.edu.au' 
+    - '5 * * * * /bin/sh /opt/aaf/x/cron.sh'
 
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
