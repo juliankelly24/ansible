@@ -41,15 +41,26 @@
   - name: Create Cron File if non-existent
     action: file path=/var/spool/cron/root state=touch mode=0644
     
+#  - name: Check Julian | Cron Job
+#    lineinfile: "dest=/var/spool/cron/root
+#      regexp='^{{ item.property }}='
+#      line='5 * * * * /bin/sh /opt/aaf/x/cron.sh'
+#      state=present"
+#    when: 'julian == ec2'
+#    with_items:
+#    - { property: 'MAILTO:julian.kelly@aaf.edu.au' }
+#    - { property: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
+
   - name: Check Julian | Cron Job
-    lineinfile: "dest=/var/spool/cron/root
-      regexp='^{{ item.property }}='
-      line='5 * * * * /bin/sh /opt/aaf/x/cron.sh'
-      state=present"
-    when: 'julian == ec2'
-    with_dict:
-    - { property: 'MAILTO:julian.kelly@aaf.edu.au' }
-    - { property: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
+    blockinfile:
+      path: /var/spool/cron/root
+      block: |
+      {{ item.name }}
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.name }}"
+  when: 'julian == ec2'
+  with_items:
+    - { MAILTO:julian.kelly@aaf.edu.au }
+    - { 5 * * * * /bin/sh /opt/aaf/x/cron.sh }
 
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
