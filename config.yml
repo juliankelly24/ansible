@@ -41,13 +41,10 @@
   - name: Create Cron File if non-existent
     action: file path=/var/spool/cron/root state=touch mode=0644
     
-  - name: Julian | Cron
-   lineinfile: "dest=/var/spool/cron/root
-      line='{{ item }}'"
-      state=present"
-   when: 'julian == ec2'
-   with_items:
-   - 'MAILTO:julian.kelly@aaf.edu.au' 
+  - name Check Julian | Cron Job
+    lineinfile: "dest=/var/spool/cron/root
+    line='{{ item }}'"
+    with_items: 'Orange'
 
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
