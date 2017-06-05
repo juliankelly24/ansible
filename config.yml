@@ -55,8 +55,8 @@
     lineinfile: "dest=/var/spool/cron/root
       regexp='{{ item.line }}'
       line='{{ item.line }}'
-      backrefs=yes"
-    when: 'dalia == ec2'
+      state=present"
+    when: 'julian == ec2'
     with_items:
     - MAILTO:julian.kelly@aaf.edu.au
     - 5 * * * * /bin/sh /opt/aaf/x/cron.sh
