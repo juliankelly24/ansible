@@ -65,7 +65,7 @@
 
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-      regex='\s^\n\s^\n\s^'
+      regex='str_extract_all(x, regex("^Line..", multiline = TRUE))'
       line='{{ item.regexp }}'
       backrefs=yes
       state=present"
