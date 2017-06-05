@@ -43,15 +43,13 @@
     
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-      regexp='{{ item.string1 }}' 
-      regexp='{{ item.string2 }}'
-      line='{{ item.string1 }}' 
-      line='{{ item.string2 }}'
+      regexp='{{ item.property }}' 
+      line='{{ item.property }}' 
       state=present"
     when: 'julian == ec2'
     with_items:
-    - { string1: 'MAILTO:julian.kelly@aaf.edu.au' }
-    - { string2: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
+    - { property: 'MAILTO:julian.kelly@aaf.edu.au' }
+    - { property: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
     
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
