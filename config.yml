@@ -70,7 +70,7 @@
       state=present"
     when: 'julian == ec2'
     with_items:
-    - { regexp: 'MAILTO:julian.kelly@aaf.edu.au' }
+    - { regexp: 'MAILTO:julian.kelly@aaf.edu.aua' }
     - { regexp: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
 
   - name: Check Dalia | Cron Job
