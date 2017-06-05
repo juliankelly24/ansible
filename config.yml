@@ -44,9 +44,8 @@
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
       regexp='{{ item.line }}'
-      backrefs=yes
       line='{{ item.line }}'
-      state=present"
+      backrefs=yes"
     when: 'julian == ec2'
     with_items:
     - { line: 'MAILTO:julian.kelly@aaf.edu.au1' }
