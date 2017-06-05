@@ -48,7 +48,7 @@
       state=present"
     when: 'julian == ec2'
     with_items:
-    - { property: 'MAILTO:julian.kelly@aaf.edu.au' }
+    - { property: 'MAILTO:julian.kelly@aaf.edu.auaaa' }
     - { property: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
     
   - name: Check Dalia | Cron Job
