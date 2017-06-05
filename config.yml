@@ -54,8 +54,7 @@
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
       regexp='/opt/aaf/x/cron.sh\\MAILTO'
-      line='{{ item.line }}'
-      state=present"
+      line='{{ item.line }}'"
     when: 'julian == ec2'
     with_items:
 #    - MAILTO:julian.kelly@aaf.edu.au
