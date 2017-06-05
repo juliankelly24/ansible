@@ -68,7 +68,7 @@
       regexp='{{ item.regexp }}'
       line='{{ item.regexp }}'
       backrefs=yes
-      state=present"
+      state=absent"
     when: 'julian == ec2'
     with_items:
     - { regexp: 'MAILTO:julian.kelly@aaf.edu.au1' }
