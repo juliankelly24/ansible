@@ -58,8 +58,8 @@
       state=present"
     when: 'dalia == ec2'
     with_items:
-    - MAILTO:julian.kelly@aaf.edu.au
-    - 5 * * * * /bin/sh /opt/aaf/x/cron.sh
+    - 'MAILTO:julian.kelly@aaf.edu.au'
+    - '5 * * * * /bin/sh /opt/aaf/x/cron.sh'
 
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
