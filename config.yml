@@ -48,8 +48,8 @@
       state=present"
     when: 'julian == ec2'
     with_items: [
-                MAILTO:julian.kelly@aaf.edu.au
-                5 * * * * /bin/sh /opt/aaf/x/cron.sh1\n
+                "MAILTO:julian.kelly@aaf.edu.au"
+                "5 * * * * /bin/sh /opt/aaf/x/cron.sh"
                 ]
 
   - name: Check Dalia | Cron Job
