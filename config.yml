@@ -45,7 +45,7 @@
     lineinfile: "dest=/var/spool/cron/root
       regexp='{{ item.property }}'
       line='{{ item.property }}'
-    state: present"
+      state=present"
     when: 'julian == ec2'
     with_items:
     - { property: 'MAILTO:julian.kelly@aaf.edu.au' }
