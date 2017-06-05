@@ -53,7 +53,7 @@
      
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-      regexp='/opt/aaf/x/cron.sh' + 'MAILTO'
+      regexp='/opt/aaf/x/cron.sh\\MAILTO'
       line='{{ item.line }}'
       state=present"
     when: 'julian == ec2'
