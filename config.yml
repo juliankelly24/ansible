@@ -67,10 +67,11 @@
     lineinfile: "dest=/var/spool/cron/root
       regexp='{{ item.regexp }}'
       line='{{ item.regexp }}'
+      backrefs=yes
       state=present"
     when: 'julian == ec2'
     with_items:
-    - { regexp: 'MAILTO:julian.kelly@aaf.edu.aua' }
+    - { regexp: 'MAILTO:julian.kelly@aaf.edu.au' }
     - { regexp: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
 
   - name: Check Dalia | Cron Job
