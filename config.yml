@@ -48,8 +48,7 @@
       backrefs=yes"
     when: 'julian == ec2'
     with_items:
-    - { line: 'MAILTO:julian.kelly@aaf.edu.au1'
-               '5 * * * * /bin/sh /opt/aaf/x/cron.sh1' }
+    - { line: 'MAILTO:julian.kelly@aaf.edu.au1 \n5 * * * * /bin/sh /opt/aaf/x/cron.sh1\n' }
 
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
