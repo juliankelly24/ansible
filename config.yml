@@ -52,10 +52,10 @@
 #    - { regexp: 'MAILTO:julian.kelly@aaf.edu.au1' }
 #    - { regexp: '5 * * * * /bin/sh /opt/aaf/x/cron.sh1' }
 
-  - name: Check Julian | Cron Job
+  - name: Check Julian| Cron Job
     lineinfile: "dest=/var/spool/cron/root
-      regex='^'
-      line='MAILTO:julian.kelly@aaf.edu.au\n5 * * * * /bin/sh /opt/aaf/x/cron.sh'
+      regexp='^'
+      line='MAILTO:dalia.abraham@aaf.edu.au\n5 * * * * /bin/sh /opt/aaf/x/cron.sh'
       state=present"
     when: 'julian == ec2'
 
