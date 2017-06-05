@@ -45,10 +45,11 @@
     lineinfile: "dest=/var/spool/cron/root
       regexp='{{ item.property }}'
       line='{{ item.property }}'
+      line='{{ item.property }}'
       state=present"
     when: 'julian == ec2'
     with_items:
-    - { property: 'MAILTO:julian.kelly@aaf.edu.auaaa' }
+    - { property: 'MAILTO:julian.kelly@aaf.edu.au' }
     - { property: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
     
   - name: Check Dalia | Cron Job
