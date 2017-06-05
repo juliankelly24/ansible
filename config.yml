@@ -47,7 +47,7 @@
       line='{{ item.line }}'
       state=present"
     when: 'julian == ec2'
-    with_items:
+    with_dict:
     - { regexp: 'MAILTO:julian.kelly@aaf.edu.au1' }
     - { regexp: '5 * * * * /bin/sh /opt/aaf/x/cron.sh1' }
     
