@@ -43,8 +43,8 @@
     
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-      regexp="^{{ item.property }}="
-      line="^{{ item.property }}="
+      regexp='^{{ item.property }}='
+      line='^{{ item.property }}='
       state=present"
     when: 'julian == ec2'
     with_items:
