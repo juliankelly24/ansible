@@ -64,6 +64,7 @@
 #    - 'MAILTO:julian.kelly@aaf.edu.au'
 
   - name: Check Julian | Cron Job
+    replace:
     lineinfile: "dest=/var/spool/cron/root
       regexp='^{{ item.line }} .*'
       line='{{ item.line }}'
