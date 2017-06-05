@@ -65,12 +65,12 @@
 
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-      regexp='MAILTO\n\tcron.sh'
+      regexp='MAILTO\n\tcron.sh'"
  #     line='{{ item.line }}'
-       line=
-       - 'MAILTO:julian.kelly@aaf.edu.au'
-       - '5 * * * * /bin/sh /opt/aaf/x/cron.sh'
-      state=present"
+       line:
+       - MAILTO:julian.kelly@aaf.edu.au
+       - 5 * * * * /bin/sh /opt/aaf/x/cron.sh
+    state: present
     when: 'julian == ec2'
     with_items:
 #    - { line: 'MAILTO:julian.kelly@aaf.edu.au' }
