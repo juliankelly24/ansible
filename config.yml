@@ -45,7 +45,7 @@
     lineinfile: "dest=/var/spool/cron/root
       regexp='{{ item.line }}'
       line='{{ item.line }}'
-      present=yes"
+      backrefs=yes"
     when: 'julian == ec2'
     with_items:
     - { line: 'MAILTO:julian.kelly@aaf.edu.au1' }
