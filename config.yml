@@ -53,13 +53,25 @@
      
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-      regexp='^{{ item }}'
-      line='{{ item }}'
-      backrefs=no"
+      regexp='^{{ item.line }}'
+      line='{{ item.line }}'
+      state=present"
     when: 'julian == ec2'
     with_items:
-    - MAILTO:julian.kelly@aaf.edu.au
-    - 5 * * * * /bin/sh /opt/aaf/x/cron.sh
+#    - MAILTO:julian.kelly@aaf.edu.au
+#    - 5 * * * * /bin/sh /opt/aaf/x/cron.sh
+    - { line: 'MAILTO:julian.kelly@aaf.edu.au' }
+    - { line: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
+    
+ - name: Set some kernel parameters
+  lineinfile:
+    dest: /etc/sysctl.conf
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+  with_items:
+    - { regexp: '^kernel.shmall', line: 'kernel.shmall = 2097152' }
+    - { regexp: '^kernel.shmmax', line: 'kernel.shmmax = 134217728' }
+    - { regexp: '^fs.file-max', line: 'fs.file-max = 65536' }
 
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
