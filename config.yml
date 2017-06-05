@@ -53,14 +53,14 @@
      
   - name: Check Julian | Cron Job
     lineinfile: "dest=/var/spool/cron/root
-      regexp='/opt/aaf/x/cron.sh\\MAILTO'
-      line='{{ item.line }}'"
+      regexp='{{ item.line1 }}\\{{ item.line2 }}''
+      line='{{ item.line1 }}\\{{ item.line2 }}'"
     when: 'julian == ec2'
     with_items:
 #    - MAILTO:julian.kelly@aaf.edu.au
 #    - 5 * * * * /bin/sh /opt/aaf/x/cron.sh
-    - { line: 'MAILTO:julian.kelly@aaf.edu.au' }
-    - { line: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
+    - { line1: 'MAILTO:julian.kelly@aaf.edu.au' }
+    - { line2: '5 * * * * /bin/sh /opt/aaf/x/cron.sh' }
 
   - name: Check Dalia | Cron Job
     lineinfile: "dest=/var/spool/cron/root
