@@ -59,8 +59,8 @@
 #      state=present"
 #    when: 'julian == ec2'
 
-- name: insert/update cron job
-  blockinfile:
+  - name: insert/update cron job
+    blockinfile:
     path: /var/spool/cron/root
     block: |
       iface eth0 inet static
