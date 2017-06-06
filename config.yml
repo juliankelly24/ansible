@@ -64,8 +64,9 @@
     blockinfile:
       path: /var/spool/cron/root
       block: |
-        MAILTO:julian.kelly@aaf.edu.au
-        5 * * * * /bin/sh /opt/aaf/x/cron.sh
+        MAILTO:julian.kelly@aaf.edu.auabc123
+        5 * * * * /bin/sh /opt/aaf/x/cron.sh123bac
+        aaa
 
 #
 #  - name: Check Julian| Cron Job
