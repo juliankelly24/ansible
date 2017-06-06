@@ -40,7 +40,7 @@
     
   - name: Create Cron File if non-existent
     action: file path=/var/spool/cron/root state=touch force=yes mode=0644
-
+#
 #  - name: Check Julian | Cron Job
 #    lineinfile: "dest=/var/spool/cron/root
 #      regex='MAILTO\ncron'
@@ -59,13 +59,14 @@
 #      state=present"
 #    when: 'julian == ec2'
 
-  - name: insert/update cron job
+  - name: insert/update eth0 configuration stanza in /etc/network/interfaces
+          (it might be better to copy files into /etc/network/interfaces.d/)
     blockinfile:
-    path: /var/spool/cron/root
-    block: |
-      iface eth0 inet static
-          address 192.0.2.23
-          netmask 255.255.255.0
+      path: /etc/network/interfaces
+      block: |
+        iface eth0 inet static
+            address 192.0.2.23
+            netmask 255.255.255.0
 #
 #  - name: Check Julian| Cron Job
 #    blockinfile:
