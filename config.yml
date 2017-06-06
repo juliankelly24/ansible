@@ -46,7 +46,7 @@
       path: /var/spool/cron/root
       block: |
         MAILTO="julian.kelly@aaf.edu.au"
-        * * * * * /bin/sh /opt/aaf/x/cron.sh 2>&1
+        * * * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
     when: 'julian == ec2'
 
   - name: Schedule Cron Job and Email Alert | Dalia
@@ -54,7 +54,7 @@
       path: /var/spool/cron/root
       block: |
         MAILTO="dalia.abraham@aaf.edu.au"
-        30 1 * * * /bin/sh /opt/aaf/x/cron.sh 2>&1
+        30 1 * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
     when: 'dalia == ec2'
 
   - name: Schedule Cron Job and Email Alert | Terry
@@ -62,7 +62,7 @@
       path: /var/spool/cron/root
       block: |
         MAILTO="t.smith@aaf.edu.au"
-        30 1 * * * /bin/sh /opt/aaf/x/cron.sh 2>&1
+        30 1 * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
     when: 'terry == ec2'
 
   - name: Schedule Cron Job and Email Alert | Melroy
@@ -70,7 +70,7 @@
       path: /var/spool/cron/root
       block: |
         MAILTO="melroy.almeiday@aaf.edu.au"
-        30 1 * * * /bin/sh /opt/aaf/x/cron.sh 2>&1
+        30 1 * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
     when: 'melroy == ec2'
 
   - name: upgrade all packages
