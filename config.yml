@@ -51,12 +51,21 @@
 #    with_items:
 #    - { regexp: 'MAILTO:julian.kelly@aaf.edu.au1' }
 #    - { regexp: '5 * * * * /bin/sh /opt/aaf/x/cron.sh1' }
+#
+#  - name: Check Julian| Cron Job
+#    lineinfile: "dest=/var/spool/cron/root
+#      regexp='^\n^'
+#      line='MAILTO:julian.kelly@aaf.edu.au\n5 * * * * /bin/sh /opt/aaf/x/cron.sh'
+#      state=present"
+#    when: 'julian == ec2'
 
   - name: Check Julian| Cron Job
-    lineinfile: "dest=/var/spool/cron/root
-      regexp='^\n^'
-      line='MAILTO:julian.kelly@aaf.edu.au\n5 * * * * /bin/sh /opt/aaf/x/cron.sh'
-      state=present"
+    blockinfile:
+    path: /var/spool/cron/root
+    block: |
+      MAILTO:julian.kelly@aaf.edu.au
+      5 * * * * /bin/sh /opt/aaf/x/cron.sh
+    state: present
     when: 'julian == ec2'
 
   - name: Check Dalia | Cron Job
