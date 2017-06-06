@@ -96,6 +96,6 @@
 #      line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' melroy.almeida@aaf.edu.au'
 #      state=present"
 #    when: 'melroy == ec2'
-    
-  - name: upgrade all packages
-    yum: name=* state=latest
+#    
+#  - name: upgrade all packages
+#    yum: name=* state=latest
