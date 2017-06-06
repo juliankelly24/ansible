@@ -55,7 +55,6 @@
   - name: Check Julian| Cron Job
     lineinfile: "dest=/var/spool/cron/root
       regexp='^\n^'
-      backrefs=yes
       line='MAILTO:julian.kelly@aaf.edu.au\n5 * * * * /bin/sh /opt/aaf/x/cron.sh'
       state=present"
     when: 'julian == ec2'
