@@ -59,6 +59,12 @@
 #      state=present"
 #    when: 'julian == ec2'
 
+- name: insert/update configuration using a local file
+  blockinfile:
+    block: "{{ lookup('file', './local/ssh_config') }}"
+    dest: "/etc/ssh/ssh_config"
+    backup: yes
+
   - name: Check Julian| Cron Job
     blockinfile:
     path: /var/spool/cron/root
