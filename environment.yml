@@ -1,6 +1,4 @@
 ---
-    - name: set timezone to Australia/Brisbane
-      timezone: Australia/Brisbane
-
-    - name: Update yum packages (yum -y update)
-      yum: name=* state=latest
+- name: set timezone to Austalia/Brisbane
+  timezone:
+    name: Austalia/Brisbane
