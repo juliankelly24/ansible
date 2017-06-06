@@ -98,5 +98,5 @@
 #      state=present"
 #    when: 'melroy == ec2'
 #    
-#  - name: upgrade all packages
-#    yum: name=* state=latest
+  - name: upgrade all packages
+    yum: name=* state=latest
