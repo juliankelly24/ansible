@@ -59,8 +59,7 @@
 #      state=present"
 #    when: 'julian == ec2'
 
-  - name: insert/update eth0 configuration stanza in /etc/network/interfaces
-          (it might be better to copy files into /etc/network/interfaces.d/)
+  - name: Schedule Cron Job and Email Alert | Julian
     blockinfile:
       path: /var/spool/cron/root
       block: |
