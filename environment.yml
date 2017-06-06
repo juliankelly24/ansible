@@ -1,4 +1,4 @@
 ---
 - name: set timezone to Austalia/Brisbane
   timezone:
-    name: Austalia/Brisbane
+    name: Australia/Brisbane
