@@ -46,7 +46,7 @@
       path: /var/spool/cron/root
       block: |
         MAILTO="julian.kelly@aaf.edu.au"
-        5 * * * * /bin/sh /opt/aaf/x/cron.sh
+        * * * * * /bin/sh /opt/aaf/x/cron.sh
     when: 'julian == ec2'
 
   - name: Schedule Cron Job and Email Alert | Dalia
