@@ -40,24 +40,6 @@
     
   - name: Create Cron File if non-existent
     action: file path=/var/spool/cron/root state=touch mode=0644
-#
-#  - name: Check Julian | Cron Job
-#    lineinfile: "dest=/var/spool/cron/root
-#      regex='MAILTO\ncron'
-#      line='{{ item.regexp }}'
-#      backrefs=yes
-#      state=present"
-#    when: 'julian == ec2'
-#    with_items:
-#    - { regexp: 'MAILTO:julian.kelly@aaf.edu.au1' }
-#    - { regexp: '5 * * * * /bin/sh /opt/aaf/x/cron.sh1' }
-#
-#  - name: Check Julian| Cron Job
-#    lineinfile: "dest=/var/spool/cron/root
-#      regexp='^\n^'
-#      line='MAILTO:julian.kelly@aaf.edu.au\n5 * * * * /bin/sh /opt/aaf/x/cron.sh'
-#      state=present"
-#    when: 'julian == ec2'
 
   - name: Schedule Cron Job and Email Alert | Julian
     blockinfile:
@@ -65,38 +47,31 @@
       block: |
         MAILTO:julian.kelly@aaf.edu.au
         5 * * * * /bin/sh /opt/aaf/x/cron.sh
+    when: 'julian == ec2'
+
+  - name: Schedule Cron Job and Email Alert | Dalia
+    blockinfile:
+      path: /var/spool/cron/root
+      block: |
+        MAILTO:dalia.abraham@aaf.edu.au
+        30 1 * * * /bin/sh /opt/aaf/x/cron.sh
     when: 'dalia == ec2'
 
-#
-#  - name: Check Julian| Cron Job
-#    blockinfile:
-#    path: /var/spool/cron/root
-#    block: |
-#      MAILTO:julian.kelly@aaf.edu.au
-#      5 * * * * /bin/sh /opt/aaf/x/cron.sh
-#    state: present
-#    when: 'julian == ec2'
-#
-#  - name: Check Dalia | Cron Job
-#    lineinfile: "dest=/var/spool/cron/root
-#      regexp='^'
-#      line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' dalia.abraham@aaf.edu.au'
-#      state=present"
-#    when: 'dalia == ec2'
-#    
-#  - name: Check Terry | Cron Job
-#    lineinfile: "dest=/var/spool/cron/root
-#      regexp='^'
-#      line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' t.smith@aaf.edu.au'
-#      state=present"
-#    when: 'terry == ec2'
-#    
-#  - name: Check Melroy | Cron Job
-#    lineinfile: "dest=/var/spool/cron/root
-#      regexp='^'
-#      line='30 1 * * * /bin/sh /opt/aaf/x/cron.sh | mail -s 'errors' melroy.almeida@aaf.edu.au'
-#      state=present"
-#    when: 'melroy == ec2'
-#    
+  - name: Schedule Cron Job and Email Alert | Terry
+    blockinfile:
+      path: /var/spool/cron/root
+      block: |
+        MAILTO:t.smith@aaf.edu.au
+        30 1 * * * /bin/sh /opt/aaf/x/cron.sh
+    when: 'terry == ec2'
+
+  - name: Schedule Cron Job and Email Alert | Melroy
+    blockinfile:
+      path: /var/spool/cron/root
+      block: |
+        MAILTO:melroy.almeiday@aaf.edu.au
+        30 1 * * * /bin/sh /opt/aaf/x/cron.sh
+    when: 'melroy == ec2'
+
   - name: upgrade all packages
     yum: name=* state=latest
