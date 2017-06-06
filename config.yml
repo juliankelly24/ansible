@@ -45,7 +45,7 @@
     blockinfile:
       path: /var/spool/cron/root
       block: |
-        MAILTO:julian.kelly@aaf.edu.au
+        MAILTO="julian.kelly@aaf.edu.au"
         5 * * * * /bin/sh /opt/aaf/x/cron.sh
     when: 'julian == ec2'
 
@@ -53,7 +53,7 @@
     blockinfile:
       path: /var/spool/cron/root
       block: |
-        MAILTO:dalia.abraham@aaf.edu.au
+        MAILTO="dalia.abraham@aaf.edu.au"
         30 1 * * * /bin/sh /opt/aaf/x/cron.sh
     when: 'dalia == ec2'
 
@@ -61,7 +61,7 @@
     blockinfile:
       path: /var/spool/cron/root
       block: |
-        MAILTO:t.smith@aaf.edu.au
+        MAILTO="t.smith@aaf.edu.au"
         30 1 * * * /bin/sh /opt/aaf/x/cron.sh
     when: 'terry == ec2'
 
@@ -69,7 +69,7 @@
     blockinfile:
       path: /var/spool/cron/root
       block: |
-        MAILTO:melroy.almeiday@aaf.edu.au
+        MAILTO="melroy.almeiday@aaf.edu.au"
         30 1 * * * /bin/sh /opt/aaf/x/cron.sh
     when: 'melroy == ec2'
 
