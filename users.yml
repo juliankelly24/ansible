@@ -6,7 +6,6 @@
     melroy: "{{ lookup('file', '/opt/aaf/repo/pub_keys/melroy.pub') }}"
     ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
 
-  tasks:
   - include_vars: usernames.yml
 
   - name: Add Users | Create Shells & Home directories
