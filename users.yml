@@ -1,16 +1,13 @@
 ---
-  - name: Setup | authorized key upload
-    authorized_key: user={{ item.username }}
-      key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
-#     path='/home/{{ item.username }}/.ssh/authorized_keys'
-#     manage_dir=no
-    with_items: '{{users}}'
-
-  - name: Sudoers | update sudoers file and validate
-    lineinfile: "dest=/etc/sudoers
-      insertafter=EOF
-      line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
-      regexp='^{{ item.username }} .*'
-      state=present"
-    when: 'item.use_sudo == True'
-    with_items: '{{users}}'
+  users:
+  - username: julian
+    use_sudo: yes
+ 
+  - username: dalia
+    use_sudo: yes
+ 
+  - username: terry
+     use_sudo: yes
+ 
+  - username: melroy
+     use_sudo: yes
