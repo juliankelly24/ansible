@@ -3,6 +3,4 @@
   user: root
 
   tasks:
-  include: 
-  - environment.yml
-  - users.yml
+  - include: users.yml
