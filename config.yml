@@ -2,13 +2,6 @@
 - hosts: localhost
   user: root
 
-  vars:
-    julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
-    dalia: "{{ lookup('file', '/opt/aaf/repo/pub_keys/dalia.pub') }}"
-    terry: "{{ lookup('file', '/opt/aaf/repo/pub_keys/terry.pub') }}"
-    melroy: "{{ lookup('file', '/opt/aaf/repo/pub_keys/melroy.pub') }}"
-    ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
-
   tasks:
   - include_vars: users.yml
   - include: environment.yml
@@ -49,6 +42,7 @@
         MAILTO="julian.kelly@aaf.edu.au"
         * * * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
     when: 'julian-rsa == ec2'
+    with_items: '{{vars}}'
 
   - name: Schedule Cron Job and Email Alert | Dalia
     blockinfile:
