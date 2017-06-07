@@ -12,18 +12,18 @@
   tasks:
   - include_vars: usernames.yml
 
-  - name: Add users | create users, shell, home dirs
+  - name: Add Users | Create Shells & Home directories
     user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
     with_items: '{{users}}'
 
-  - name: Setup | authorized key upload
+  - name: Upload | Authorized Key
     authorized_key: user={{ item.username }}
       key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
 #     path='/home/{{ item.username }}/.ssh/authorized_keys'
 #     manage_dir=no
     with_items: '{{users}}'
 
-  - name: Sudoers | update sudoers file and validate
+  - name: Sudoers | Update Users  Attributes: Sudo File and Validate
     lineinfile: "dest=/etc/sudoers
       insertafter=EOF
       line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
@@ -32,13 +32,13 @@
     when: 'item.use_sudo == True'
     with_items: '{{users}}'
     
-  - name: Check Cron Directory exists
+  - name: Create/Check Cron Directory
     action: file path=/opt/aaf/x state=directory mode=0755
     
   - name: Copy Cron Shell
     copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
     
-  - name: Create Cron File if non-existent
+  - name: Create Cron Schedule File if Non-Existent
     action: file path=/var/spool/cron/root state=touch mode=0644
 
   - name: Schedule Cron Job and Email Alert | Julian
