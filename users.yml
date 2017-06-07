@@ -23,7 +23,7 @@
 #     manage_dir=no
     with_items: '{{users}}'
 
-  - name: Sudoers | Update Users  Attributes: Sudo File and Validate
+  - name: Sudoers | Update Users Attributes and Validate
     lineinfile: "dest=/etc/sudoers
       insertafter=EOF
       line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
