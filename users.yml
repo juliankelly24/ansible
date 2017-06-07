@@ -1,4 +1,7 @@
 ---
+  vars:
+    ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
+  
   users:
   
   - username: julian
