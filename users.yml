@@ -15,19 +15,3 @@
     state=present"
   when: 'item.use_sudo == True'
   with_items: '{{users}}'
-
-users:
-  - username: julian
-    use_sudo: yes
-
-  - username: dalia
-    use_sudo: yes
-
-  - username: terry
-    use_sudo: yes
-
-  - username: melroy
-    use_sudo: yes
-  - name: Add users | create users, shell, home dirs
-    user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
-    with_items: '{{users}}'
