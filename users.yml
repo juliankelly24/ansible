@@ -1,11 +1,4 @@
 ---
-  vars:
-  - julian-rsa: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
-  - dalia-rsa: "{{ lookup('file', '/opt/aaf/repo/pub_keys/dalia.pub') }}"
-  - terry-rsa: "{{ lookup('file', '/opt/aaf/repo/pub_keys/terry.pub') }}"
-  - melroy-rsa: "{{ lookup('file', '/opt/aaf/repo/pub_keys/melroy.pub') }}"
-  - ec2-rsa: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
-  
   users:
   
   - username: julian
