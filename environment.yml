@@ -3,8 +3,8 @@
   timezone:
     name: Australia/Brisbane
 
-- name: install firewalld
-    apt: name=firewalld state=present 
+- name: install firewalld 
+  apt: name=firewalld state=present
   register: firewalld
   until: firewalld|success
   retries: 3
