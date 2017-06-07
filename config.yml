@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  user: root
+  
+  tasks:
+  - include: users.yml
+  
+  - name: set timezone to Austalia/Brisbane
+    timezone:
+    name: Australia/Brisbane
+
+  - name: install firewalld 
+    apt: name=firewalld state=present
+    register: firewalld
+    until: firewalld|success
+    retries: 3
+    delay: 1
+    ignore_errors: yes
+
+  - name: ensure that firewalld is started and enable at boot
+    service: name=firewalld enabled=yes state=started
+
+  - name: open up port 80 for tcp
+    firewalld: port=80/tcp permanent=yes state=enabled
+   
+  - name: open up port 22 for tcp
+    firewalld: port=22/tcp permanent=yes state=enabled
+    notify: restart firewalld
+  
+  - name: restart firewalld
+    service: name=firewalld state=restarted
