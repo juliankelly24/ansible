@@ -3,5 +3,6 @@
   user: root
 
   tasks:
-  - include_vars: users.yml
-  - include: environment.yml
+  include: 
+  - environment.yml
+  - users.yml
