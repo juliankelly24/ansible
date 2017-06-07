@@ -4,7 +4,7 @@
     name: Australia/Brisbane
 
 - name: configure a web server firewall using firewalld
-  hosts: testserver
+  hosts: localhost
   
   tasks:
     - name: install firewalld 
