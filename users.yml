@@ -1,5 +1,6 @@
 ---
-  - hosts: all
+- hosts: all
+
   vars:
     julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
     dalia: "{{ lookup('file', '/opt/aaf/repo/pub_keys/dalia.pub') }}"
