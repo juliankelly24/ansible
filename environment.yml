@@ -1,15 +1,43 @@
 ---
+vars:
+  docroot: /var/www/html/
+sudo: true
+
+tasks:
 - name: set timezone to Austalia/Brisbane
   timezone:
     name: Australia/Brisbane
 
-- name: install firewalld 
-  apt: name=firewalld state=present
-  register: firewalld
-  until: firewalld|success
-  retries: 3
-  delay: 1
-  ignore_errors: yes
+- name: Install Packages
+  yum: pkg={{ item }} state=installed
+  with_items:
+    - httpd
+    - mod_ssl
+    - ntp
+    - htop
+- name: config apache
+  action: |
+    raw cat <<EOF  > /etc/httpd/conf.d/virtualhosts.conf
+    NameVirtualHost *:80
+    NameVirtualHost *:443
+
+    <VirtualHost *:80>
+       DocumentRoot /var/www/html
+       <Directory "/var/www/html/">
+          Options -Indexes FollowSymLinks
+          AllowOverride All
+          DirectoryIndex index.html index.htm index.php
+       </Directory>
+    </VirtualHost>
+    EOF
+  notify:
+- restart apache
+- name: on apache
+  action: command /sbin/chkconfig httpd on
+- name: check apache
+  action: service name=httpd state=started
+- name: set permission
+  file: path=/var/www/html owner=root group=root mode=0777 force=yes state=directory
 
 - name: ensure that firewalld is started and enable at boot
   service: name=firewalld enabled=yes state=started
@@ -19,7 +47,18 @@
    
 - name: open up port 22 for tcp
   firewalld: port=22/tcp permanent=yes state=enabled
-  notify: restart firewalld
-  
-- name: restart firewalld
-  service: name=firewalld state=restarted
+
+    notify:
+  - restart apache
+  - restart firewalld
+  - restart ansible
+
+  handlers:
+- name: Restart Ansible
+  service:
+    name: ansible
+    state: restarted
+- name: Restart Apache
+  service:
+    name: httpd
+    state: restarted
