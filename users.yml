@@ -7,7 +7,7 @@
     use_sudo: yes
  
   - username: terry
-     use_sudo: yes
+    use_sudo: yes
  
   - username: melroy
      use_sudo: yes
