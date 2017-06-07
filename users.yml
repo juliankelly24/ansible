@@ -12,6 +12,3 @@
 
   - username: melroy
     use_sudo: yes
-    
-  - username: test
-    use_sudo: yes
