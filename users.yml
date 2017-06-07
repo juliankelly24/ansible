@@ -1,10 +1,10 @@
 ---
   vars:
-    julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
-    dalia: "{{ lookup('file', '/opt/aaf/repo/pub_keys/dalia.pub') }}"
-    terry: "{{ lookup('file', '/opt/aaf/repo/pub_keys/terry.pub') }}"
-    melroy: "{{ lookup('file', '/opt/aaf/repo/pub_keys/melroy.pub') }}"
-    ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
+  - julian-rsa: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
+  - dalia-rsa: "{{ lookup('file', '/opt/aaf/repo/pub_keys/dalia.pub') }}"
+  - terry-rsa: "{{ lookup('file', '/opt/aaf/repo/pub_keys/terry.pub') }}"
+  - melroy-rsa: "{{ lookup('file', '/opt/aaf/repo/pub_keys/melroy.pub') }}"
+  - ec2-rsa: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
   
   users:
   
@@ -19,13 +19,3 @@
  
   - username: melroy
     use_sudo: yes
-  
-  tasks:
-  
-  - name: Add users | create users, shell, home dirs
-    user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
-    with_items: '{{users}}'
-
-  - name: Setup | authorized key upload
-    authorized_key: user={{ item.username }}
-      key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
