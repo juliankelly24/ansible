@@ -1,9 +1,15 @@
 ---
+  vars:
+    julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
+    dalia: "{{ lookup('file', '/opt/aaf/repo/pub_keys/dalia.pub') }}"
+    terry: "{{ lookup('file', '/opt/aaf/repo/pub_keys/terry.pub') }}"
+    melroy: "{{ lookup('file', '/opt/aaf/repo/pub_keys/melroy.pub') }}"
+    ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
+  
   users:
   
   - username: julian
     use_sudo: yes
-    key: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
     
   - username: dalia
     use_sudo: yes
@@ -13,7 +19,3 @@
  
   - username: melroy
     use_sudo: yes
-
-  - username: ec2-user
-    use_sudo: yes
-    key: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
