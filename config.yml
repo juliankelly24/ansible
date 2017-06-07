@@ -41,8 +41,10 @@
       block: |
         MAILTO="julian.kelly@aaf.edu.au"
         * * * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
+    include_vars:
+      file: users.yml
+      name: julian
     when: 'julian == ec2'
-    include_vars: 'users.yml'
 
   - name: Schedule Cron Job and Email Alert | Dalia
     blockinfile:
