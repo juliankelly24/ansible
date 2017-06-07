@@ -1,9 +1,9 @@
 ---
-vars:
-  docroot: /var/www/html/
-sudo: true
+  vars:
+    docroot: /var/www/html/
+  sudo: true
 
-tasks:
+  tasks:
 - name: set timezone to Austalia/Brisbane
   timezone:
     name: Australia/Brisbane
