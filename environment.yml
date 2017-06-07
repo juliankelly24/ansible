@@ -9,7 +9,6 @@
   until: firewalld|success
   retries: 3
   delay: 1
-  sudo: yes
   ignore_errors: yes
 
 - name: ensure that firewalld is started and enable at boot
