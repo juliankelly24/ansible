@@ -3,8 +3,14 @@
   timezone:
     name: Australia/Brisbane
 
-- name: Install firewalld 
-  apt: name=firewalld state=present
+- name: install firewalld
+  apt: name=firewalld state=present 
+  egister: firewalld
+  until: firewalld|success
+  retries: 3
+  delay: 1
+  sudo: yes
+  ignore_errors: yes
 
 - name: ensure that firewalld is started and enable at boot
   service: name=firewalld enabled=yes state=started
