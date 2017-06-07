@@ -1,5 +1,7 @@
 ---
-  include_vars: usernames.yml
+- hosts: localhost
+  user: root
+
   vars:
     julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
     dalia: "{{ lookup('file', '/opt/aaf/repo/pub_keys/dalia.pub') }}"
@@ -7,18 +9,22 @@
     melroy: "{{ lookup('file', '/opt/aaf/repo/pub_keys/melroy.pub') }}"
     ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
 
-  - name: Add Users | Create Shells & Home directories
+  tasks:
+  - include_vars: users.yml
+  - include: environment.yml
+
+  - name: Add users | create users, shell, home dirs
     user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
     with_items: '{{users}}'
 
-  - name: Upload | Authorized Key
+  - name: Setup | authorized key upload
     authorized_key: user={{ item.username }}
       key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
 #     path='/home/{{ item.username }}/.ssh/authorized_keys'
 #     manage_dir=no
     with_items: '{{users}}'
 
-  - name: Sudoers | Update Users Attributes and Validate
+  - name: Sudoers | update sudoers file and validate
     lineinfile: "dest=/etc/sudoers
       insertafter=EOF
       line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
@@ -27,13 +33,13 @@
     when: 'item.use_sudo == True'
     with_items: '{{users}}'
     
-  - name: Create/Check Cron Directory
+  - name: Check Cron Directory exists
     action: file path=/opt/aaf/x state=directory mode=0755
     
   - name: Copy Cron Shell
     copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
     
-  - name: Create Cron Schedule File if Non-Existent
+  - name: Create Cron File if non-existent
     action: file path=/var/spool/cron/root state=touch mode=0644
 
   - name: Schedule Cron Job and Email Alert | Julian
