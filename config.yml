@@ -3,6 +3,7 @@
   user: root
   
   tasks:
+  - include_vars: usernames.yml
   - include: users.yml
   
   - name: set timezone to Austalia/Brisbane
