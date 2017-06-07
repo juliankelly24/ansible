@@ -3,4 +3,66 @@
   user: root
 
   tasks:
-  - include: users.yml
+  - include_vars: users.yml
+  - include: environment.yml
+
+  - name: Add users | create users, shell, home dirs
+    user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
+    with_items: '{{users}}'
+
+  - name: Setup | authorized key upload
+    authorized_key: user={{ item.username }}
+      key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
+#     path='/home/{{ item.username }}/.ssh/authorized_keys'
+#     manage_dir=no
+    with_items: '{{users}}'
+
+  - name: Sudoers | update sudoers file and validate
+    lineinfile: "dest=/etc/sudoers
+      insertafter=EOF
+      line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
+      regexp='^{{ item.username }} .*'
+      state=present"
+    when: 'item.use_sudo == True'
+    with_items: '{{users}}'
+    
+  - name: Check Cron Directory exists
+    action: file path=/opt/aaf/x state=directory mode=0755
+    
+  - name: Copy Cron Shell
+    copy: src=/opt/aaf/repo/config.sh dest=/opt/aaf/x/cron.sh mode=0755
+    
+  - name: Create Cron File if non-existent
+    action: file path=/var/spool/cron/root state=touch mode=0644
+
+  - name: Schedule Cron Job and Email Alert | Julian
+    blockinfile:
+      path: /var/spool/cron/root
+      block: |
+        MAILTO="julian.kelly@aaf.edu.au"
+        * * * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
+    when: 'julian-rsa == ec2-rsa'
+
+  - name: Schedule Cron Job and Email Alert | Dalia
+    blockinfile:
+      path: /var/spool/cron/root
+      block: |
+        MAILTO="dalia.abraham@aaf.edu.au"
+        30 1 * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
+    when: 'dalia == ec2'
+
+  - name: Schedule Cron Job and Email Alert | Terry
+    blockinfile:
+      path: /var/spool/cron/root
+      block: |
+        MAILTO="t.smith@aaf.edu.au"
+        30 1 * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
+    when: 'terry == ec2'
+
+  - name: Schedule Cron Job and Email Alert | Melroy
+    blockinfile:
+      path: /var/spool/cron/root
+      block: |
+        MAILTO="melroy.almeiday@aaf.edu.au"
+        30 1 * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
+    when: 'melroy == ec2'
