@@ -1,6 +1,5 @@
 ---
 
-tasks:
 - name: Setup | authorized key upload
   authorized_key: user={{ item.username }}
     key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
