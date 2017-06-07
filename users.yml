@@ -1,7 +1,4 @@
 ---
-- hosts: localhost
-  user: root
-  
   users:
   
   - username: julian
