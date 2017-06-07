@@ -4,8 +4,8 @@
     name: Australia/Brisbane
 
 - name: install firewalld
-  apt: name=firewalld state=present 
-  egister: firewalld
+    apt: name=firewalld state=present 
+  register: firewalld
   until: firewalld|success
   retries: 3
   delay: 1
