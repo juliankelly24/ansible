@@ -42,7 +42,7 @@
         MAILTO="julian.kelly@aaf.edu.au"
         * * * * * /bin/sh /opt/aaf/x/cron.sh > /dev/null
     when: 'julian-rsa == ec2'
-    with_items: '{{vars}}'
+    with_items: '{{users}}'
 
   - name: Schedule Cron Job and Email Alert | Dalia
     blockinfile:
