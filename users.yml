@@ -1,12 +1,11 @@
 ---
+  include_vars: usernames.yml
   vars:
     julian: "{{ lookup('file', '/opt/aaf/repo/pub_keys/julian.pub') }}"
     dalia: "{{ lookup('file', '/opt/aaf/repo/pub_keys/dalia.pub') }}"
     terry: "{{ lookup('file', '/opt/aaf/repo/pub_keys/terry.pub') }}"
     melroy: "{{ lookup('file', '/opt/aaf/repo/pub_keys/melroy.pub') }}"
     ec2: "{{ lookup('file', '/home/ec2-user/.ssh/authorized_keys') }}"
-
-  - include_vars: usernames.yml
 
   - name: Add Users | Create Shells & Home directories
     user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
