@@ -30,8 +30,7 @@ tasks:
        </Directory>
     </VirtualHost>
     EOF
-  notify:
-- restart apache
+
 - name: on apache
   action: command /sbin/chkconfig httpd on
 - name: check apache
@@ -48,7 +47,7 @@ tasks:
 - name: open up port 22 for tcp
   firewalld: port=22/tcp permanent=yes state=enabled
 
-    notify:
+  notify:
   - restart apache
   - restart firewalld
   - restart ansible
