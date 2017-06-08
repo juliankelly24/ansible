@@ -1,6 +1,5 @@
 ---
 
-  tasks:
   - name: Installing Latest version of Apache
     yum: pkg=httpd state=latest
   - name: Copying the demo file
