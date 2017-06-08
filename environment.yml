@@ -1,37 +1,16 @@
 ---
-- hosts: apache
-  vars:
-    docroot: /var/www/html/
-  sudo: true
+- hosts: web-servers
+
   tasks:
-  - name: Install Packages
-    yum: pkg={{ item }} state=installed
-    with_items:
-      - httpd
-      - mod_ssl
-      - ntp
-      - htop
-
-  - name: config apache
-    action: |
-      raw cat <<EOF  > /etc/httpd/conf.d/virtualhosts.conf
-      NameVirtualHost *:80
-      NameVirtualHost *:443
-      <VirtualHost *:80>
-        DocumentRoot /var/www/html
-        <Directory "/var/www/html/">
-            Options -Indexes FollowSymLinks
-            AllowOverride All
-            DirectoryIndex index.html index.htm index.php
-        </Directory>
-      </VirtualHost>
-      EOF
-
-  - name: on apache
-    action: command /sbin/chkconfig httpd on
-
-  - name: check apache
-    action: service name=httpd state=started
-
-  - name: set permission
-    file: path=/var/www/html owner=root group=root mode=0777 force=yes state=directory
+  - name: Installing Latest version of Apache
+    yum: pkg=httpd state=latest
+  - name: Copying the demo file
+    template: src=/etc/ansible/index.html dest=/var/www/html
+              owner=apache group=apache mode=0644
+  - name: (Enable it on System Boot)
+    service: name=httpd enabled=yes
+    notify:
+    - start apache
+  handlers:
+    - name: start apache
+      service: name=httpd state=started
