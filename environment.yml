@@ -1,4 +1,8 @@
 ---
+  vars:
+    docroot: /var/www/html/
+  sudo: true
+
 - name: set timezone to Austalia/Brisbane
   timezone:
     name: Australia/Brisbane
@@ -47,7 +51,6 @@
   - restart firewalld
   - restart ansible
 
-  handlers:
 - name: Restart Ansible
   service:
     name: ansible
