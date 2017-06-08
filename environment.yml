@@ -12,7 +12,7 @@
     - htop
 
 - name: Create Virtualhost File
-    action: file path=/etc/httpd/conf.d/virtualhosts.conf state=touch mode=0644
+  action: file path=/etc/httpd/conf.d/virtualhosts.conf state=touch mode=0644
 
 - name: Config Apache
   blockinfile:
