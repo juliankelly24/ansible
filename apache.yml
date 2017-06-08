@@ -1,0 +1,25 @@
+
+---
+- name: 'Install Apache base configuration'
+  template:
+    src: /opt/aaf/repo/apache/httpd.conf
+    dest: /etc/httpd/conf/httpd.conf
+    owner: root
+    group: apache
+    mode: 0640
+    backup: yes
+  notify: 'Restart Apache'
+
+- name: 'Install Apache module configuration'
+  template:
+    src: /opt/aaf/repo/apache/00-base.conf
+    dest: /etc/httpd/conf.modules.d/00-base.conf
+    owner: root
+    group: apache
+    mode: 0640
+  notify: 'Restart Apache'
+
+- meta: flush_handlers
+
+- name: 'Enable Apache service'
+  service: name=httpd state=started enabled=yes
