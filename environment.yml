@@ -29,8 +29,8 @@
           </Directory>
       </VirtualHost>
 
-- include: tasks/apache.yml
-- include: tasks/firewalld.yml
+- include: apache.yml
+#- include: tasks/firewalld.yml
 
 - name: on apache
   action: command /sbin/chkconfig httpd on
