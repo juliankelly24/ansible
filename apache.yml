@@ -17,7 +17,6 @@
     owner: root
     group: apache
     mode: 0640
-  notify: 'Restart Apache'
 
 - meta: flush_handlers
 
