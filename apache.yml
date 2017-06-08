@@ -8,7 +8,6 @@
     group: apache
     mode: 0640
     backup: yes
-  notify: 'Restart Apache'
 
 - name: 'Install Apache module configuration'
   template:
@@ -17,8 +16,6 @@
     owner: root
     group: apache
     mode: 0640
-
-- meta: flush_handlers
 
 - name: 'Enable Apache service'
   service: name=httpd state=started enabled=yes
