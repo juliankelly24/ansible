@@ -1,5 +1,4 @@
 ---
-- hosts: web-servers
 
   tasks:
   - name: Installing Latest version of Apache
