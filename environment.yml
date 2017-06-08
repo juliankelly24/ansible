@@ -9,6 +9,6 @@
     service: name=httpd enabled=yes
     notify:
     - start apache
-  handlers:
-    - name: start apache
-      service: name=httpd state=started
+
+  - name: start apache
+    service: name=httpd state=started
