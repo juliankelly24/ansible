@@ -3,6 +3,7 @@
   timezone:
     name: Australia/Brisbane
 
+# Add Packages Yum Packages Here
 - name: Install Packages
   yum: pkg={{ item }} state=installed
   with_items:
@@ -10,31 +11,23 @@
     - mod_ssl
     - ntp
     - htop
+    
+- name: 'Enable Firewalld'
+  service: name=firewalld state=started enabled=yes
+  
+- name: 'Open Apache firewall ports'
+  firewalld:
+    port: '{{ item }}'
+    state: enabled
+    permanent: yes
+  with_items:
+    - 80/tcp
+    - 443/tcp
+  register: firewall
 
-- name: Create Virtualhost File
-  action: file path=/etc/httpd/conf.d/virtualhosts.conf state=touch mode=0644
+- name: 'Enable Apache service'
+  service: name=httpd state=started enabled=yes
 
-- name: Config Apache
-  blockinfile:
-    path: /etc/httpd/conf.d/virtualhosts.conf
-    block: |
-      NameVirtualHost *:80
-      NameVirtualHost *:443
-      <VirtualHost *:80>
-          DocumentRoot /var/www/html
-          <Directory "/var/www/html/">
-            Options -Indexes FollowSymLinks
-            AllowOverride All
-            DirectoryIndex index.html index.htm index.php
-          </Directory>
-      </VirtualHost>
-
-- include: apache.yml
-#- include: tasks/firewalld.yml
-
-- name: on apache
-  action: command /sbin/chkconfig httpd on
-- name: check apache
-  action: service name=httpd state=started
-- name: set permission
-  file: path=/var/www/html owner=root group=root mode=0777 force=yes state=directory
+- name: 'Restart firewalld'
+  service: name=firewalld state=restarted enabled=yes
+  when: firewall | changed
