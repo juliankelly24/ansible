@@ -9,7 +9,6 @@
   with_items:
     - httpd
     - mod_ssl
-    - ntp
     - htop
     
 - name: 'Enable Firewalld'
